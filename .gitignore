@@ -1,3 +1,4 @@
+# Generated files
 *.annot
 *.cmo
 *.cma
@@ -7,23 +8,44 @@
 *.cmx
 *.cmxs
 *.cmxa
-
-# ocamlbuild working directory
-_build/
-
-# ocamlbuild targets
 *.byte
 *.native
 
-# oasis generated files
+# OCamlbuild working directory
+_build/
+
+# OCamlbuild targets
 setup.data
 setup.log
 
-# Merlin configuring file for Vim and Emacs
-.merlin
-
-# Dune generated files
-*.install
-
 # Local OPAM switch
 _opam/
+
+# Dune-related files
+*.install
+.duneboot.*
+src/dune_rules/setup.ml
+
+# Editor and IDE settings
+.merlin
+.vscode
+.DS_Store
+
+# Vim swap files
+*.swp
+*.swo
+
+# Emacs lock files
+.#*
+
+# Git-ps hooks
+.git-ps
+
+# Miscellaneous files
+_boot
+_perf
+_coverage
+__pycache__
+Makefile.dev
+result
+nix/profiles/
