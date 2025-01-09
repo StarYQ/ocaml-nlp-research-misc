@@ -1,6 +1,0 @@
-description = ""
-requires = ""
-archive(byte) = "perceptron.cma"
-archive(native) = "perceptron.cmxa"
-plugin(byte) = "perceptron.cma"
-plugin(native) = "perceptron.cmxs"

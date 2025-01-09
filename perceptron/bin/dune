@@ -1,5 +1,0 @@
-(executable
- (name main)
- (public_name perceptron)
- (modules main)
- (libraries perceptron))
