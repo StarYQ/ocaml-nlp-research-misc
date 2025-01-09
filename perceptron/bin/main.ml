@@ -15,5 +15,5 @@ let () =
   let res1 = Perceptron.output p1 inputs in
   let res2 = Perceptron.output p2 inputs in 
   let res3 = Perceptron.output p3 inputs in
-  Printf.printf "Sigmoid: %f\n ReLU: %f\n Heaviside Step: %f\n" 
+  Printf.printf "Sigmoid: %f\nReLU: %f\nHeaviside Step: %f\n" 
   res1 res2 res3;;
