@@ -5,7 +5,7 @@ module Perceptron = struct
     activation: float -> float;
   }
 
-  let create weights bias activation = { weights; bias;  activation }
+  let create weights bias activation = { weights; bias; activation }
 
   let output p inputs = 
     let weighted_sum = 
