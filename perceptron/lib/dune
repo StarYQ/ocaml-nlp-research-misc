@@ -1,0 +1,4 @@
+(library
+ (name perceptron)
+ (public_name perceptron)
+ (modules Perceptron))
