@@ -48,4 +48,3 @@ _coverage
 __pycache__
 Makefile.dev
 result
-nix/profiles/
