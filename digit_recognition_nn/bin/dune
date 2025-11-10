@@ -1,0 +1,19 @@
+(executable
+ (name demo)
+ (libraries digit_recognition_nn))
+
+(executable
+ (name real_digits)
+ (libraries digit_recognition_nn))
+
+(executable
+ (name test_image_load)
+ (libraries digit_recognition_nn))
+
+(executable
+ (name real_digits_quick)
+ (libraries digit_recognition_nn))
+
+(executable
+ (name verify_64x64)
+ (libraries digit_recognition_nn))

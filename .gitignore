@@ -49,3 +49,21 @@ __pycache__
 Makefile.dev
 result
 nix/profiles/
+
+# planning docs
+digit_recognition_nn/IMPLEMENTATION_PLAN.md
+digit_recognition_nn/README.md
+digit_recognition_nn/SUMMARY.md
+digit_recognition_nn/FINAL_REPORT.md
+digit_recognition_nn/REAL_IMAGES_REPORT.md
+digit_recognition_nn/RESOLUTION_UPGRADE_REPORT.md
+
+# image data
+digit_recognition_nn/images/
+
+# refs
+digit-recognition-neural-network/example/
+
+# cc
+.claude/
+.serena/

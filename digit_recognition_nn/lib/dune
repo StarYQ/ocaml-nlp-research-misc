@@ -1,0 +1,4 @@
+(library
+ (name digit_recognition_nn)
+ (modules matrix activation neural_network image_loader)
+ (libraries imagelib.unix))
