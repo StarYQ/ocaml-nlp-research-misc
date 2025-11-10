@@ -1,0 +1,2 @@
+(library
+ (name binary_sentiment_classifier))

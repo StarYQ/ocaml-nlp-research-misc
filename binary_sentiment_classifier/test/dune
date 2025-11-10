@@ -1,0 +1,2 @@
+(test
+ (name test_binary_sentiment_classifier))

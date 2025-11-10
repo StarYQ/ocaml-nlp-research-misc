@@ -14,12 +14,12 @@ let one_hot_encode y num_classes =
 
   y_encoded
 
-(** Print a visual representation of a 64x64 digit *)
+(** Print a visual representation of a 28x28 digit *)
 let print_digit x_col =
-  Printf.printf "\nDigit visualization (64x64):\n";
-  for i = 0 to 63 do
-    for j = 0 to 63 do
-      let idx = i * 64 + j in
+  Printf.printf "\nDigit visualization (28x28):\n";
+  for i = 0 to 27 do
+    for j = 0 to 27 do
+      let idx = i * 28 + j in
       let val_ = x_col.(idx).(0) in
       (* Different threshold since we're using standardized values *)
       if val_ > 0.5 then Printf.printf "██"
@@ -43,13 +43,13 @@ let () =
   let num_iterations = 5000 in
   let num_classes = 10 in
 
-  (* Architecture: 4096 → 256 → 128 → 10 *)
-  let layer_dims = [4096; 256; 128; num_classes] in
+  (* Architecture: 784 → 128 → 64 → 10 *)
+  let layer_dims = [784; 128; 64; num_classes] in
 
   Printf.printf "Network Architecture:\n";
-  Printf.printf "  Input layer:    4096 neurons (64x64 pixels)\n";
-  Printf.printf "  Hidden layer 1: 256 neurons (ReLU)\n";
-  Printf.printf "  Hidden layer 2: 128 neurons (ReLU)\n";
+  Printf.printf "  Input layer:    784 neurons (28x28 pixels)\n";
+  Printf.printf "  Hidden layer 1: 128 neurons (ReLU)\n";
+  Printf.printf "  Hidden layer 2: 64 neurons (ReLU)\n";
   Printf.printf "  Output layer:   10 neurons (Sigmoid)\n\n";
 
   Printf.printf "Hyperparameters:\n";
@@ -108,7 +108,7 @@ let () =
   Printf.printf "------------------------------------------------------------\n";
   let num_test_samples = snd (Matrix.shape x_test) in
   for i = 0 to min 9 (num_test_samples - 1) do
-    let x_sample = Array.init 4096 (fun j -> [| x_test.(j).(i) |]) in
+    let x_sample = Array.init 784 (fun j -> [| x_test.(j).(i) |]) in
     print_digit x_sample;
     Printf.printf "True label:      %d\n" (int_of_float y_test.(0).(i));
     Printf.printf "Predicted label: %d\n" (int_of_float test_predictions.(0).(i));

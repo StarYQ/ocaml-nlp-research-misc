@@ -62,30 +62,30 @@ let load_limited_digits archive_path max_per_digit =
 (** Quick verification test *)
 let () =
   Printf.printf "===========================================================\n";
-  Printf.printf "VERIFICATION TEST - 64x64 Resolution\n";
+  Printf.printf "VERIFICATION TEST - 28x28 Resolution\n";
   Printf.printf "===========================================================\n\n";
 
   (* Configuration - MINIMAL for quick verification *)
   let archive_path = "images/digit_imgs/archive" in
   let max_per_digit = 10 in  (* Only 10 images per digit = 100 total *)
   let learning_rate = 0.01 in
-  let num_iterations = 10 in  (* Only 10 iterations for quick test *)
+  let num_iterations = 100 in  (* 100 iterations for verification *)
   let num_classes = 10 in
 
-  (* Architecture: 4096 → 256 → 128 → 10 *)
-  let layer_dims = [4096; 256; 128; num_classes] in
+  (* Architecture: 784 → 128 → 64 → 10 *)
+  let layer_dims = [784; 128; 64; num_classes] in
 
   Printf.printf "Verification Configuration:\n";
   Printf.printf "  Images per digit: %d (total ~%d images)\n" max_per_digit (max_per_digit * 10);
-  Printf.printf "  Network: 4096 → 256 → 128 → 10\n";
+  Printf.printf "  Network: 784 → 128 → 64 → 10\n";
   Printf.printf "  Learning rate: %.4f\n" learning_rate;
-  Printf.printf "  Iterations: %d (minimal for verification)\n" num_iterations;
+  Printf.printf "  Iterations: %d (for verification)\n" num_iterations;
   Printf.printf "  Train/test: 80/20 split\n\n";
 
   Printf.printf "KEY VERIFICATION POINTS:\n";
-  Printf.printf "  ✓ Images are 64x64 (4096 pixels, not 8x8 = 64 pixels)\n";
-  Printf.printf "  ✓ Network input layer: 4096 neurons (not 64)\n";
-  Printf.printf "  ✓ Hidden layers: 256 and 128 (not 60 and 10)\n\n";
+  Printf.printf "  ✓ Images are 28x28 (784 pixels - MNIST standard)\n";
+  Printf.printf "  ✓ Network input layer: 784 neurons\n";
+  Printf.printf "  ✓ Hidden layers: 128 and 64 neurons\n\n";
 
   (* Load limited dataset *)
   Printf.printf "Loading subset of real digit images...\n";
@@ -105,11 +105,11 @@ let () =
   let x_train_rows, x_train_cols = Matrix.shape x_train in
   Printf.printf "DIMENSION VERIFICATION:\n";
   Printf.printf "  X_train shape: (%d, %d)\n" x_train_rows x_train_cols;
-  Printf.printf "  Expected:      (4096, %d)\n" x_train_cols;
-  if x_train_rows = 4096 then
-    Printf.printf "  ✓ CORRECT - Using 64x64 images (4096 pixels)\n\n"
+  Printf.printf "  Expected:      (784, %d)\n" x_train_cols;
+  if x_train_rows = 784 then
+    Printf.printf "  ✓ CORRECT - Using 28x28 images (784 pixels)\n\n"
   else
-    Printf.printf "  ✗ ERROR - Expected 4096 rows!\n\n";
+    Printf.printf "  ✗ ERROR - Expected 784 rows!\n\n";
 
   (* Standardize *)
   Printf.printf "Applying StandardScaler normalization...\n";
@@ -159,14 +159,14 @@ let () =
   Printf.printf "===========================================================\n";
   Printf.printf "VERIFICATION COMPLETE!\n";
   Printf.printf "===========================================================\n\n";
-  Printf.printf "✓ Images are 64x64 (4096 pixels)\n";
-  Printf.printf "✓ Network architecture is 4096 → 256 → 128 → 10\n";
+  Printf.printf "✓ Images are 28x28 (784 pixels - MNIST standard)\n";
+  Printf.printf "✓ Network architecture is 784 → 128 → 64 → 10\n";
   Printf.printf "✓ System compiles and runs successfully\n";
-  Printf.printf "✓ Training works with new resolution\n\n";
+  Printf.printf "✓ Training works with optimized resolution\n\n";
   Printf.printf "Training accuracy: %.2f%%\n" train_accuracy;
   Printf.printf "Test accuracy:     %.2f%%\n\n" test_accuracy;
-  Printf.printf "NOTE: Full training on 1000 images for 5000 iterations\n";
-  Printf.printf "      will take significantly longer due to the larger\n";
-  Printf.printf "      network size (1M+ parameters vs 4K before).\n";
-  Printf.printf "      Run with: dune exec ./bin/real_digits_quick.exe\n";
+  Printf.printf "NOTE: This uses a much smaller network (100K parameters)\n";
+  Printf.printf "      compared to the previous 64x64 version (1M+ parameters).\n";
+  Printf.printf "      Training should now be 10x faster!\n";
+  Printf.printf "      Run full training: dune exec ./bin/real_digits_quick.exe\n";
   Printf.printf "===========================================================\n"

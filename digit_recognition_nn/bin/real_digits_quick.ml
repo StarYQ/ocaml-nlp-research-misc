@@ -72,12 +72,12 @@ let () =
   let num_iterations = 5000 in  (* Match synthetic demo *)
   let num_classes = 10 in
 
-  (* Architecture: 4096 → 256 → 128 → 10 *)
-  let layer_dims = [4096; 256; 128; num_classes] in
+  (* Architecture: 784 → 128 → 64 → 10 *)
+  let layer_dims = [784; 128; 64; num_classes] in
 
   Printf.printf "Quick Demo Configuration:\n";
   Printf.printf "  Images per digit: %d (total ~%d images)\n" max_per_digit (max_per_digit * 10);
-  Printf.printf "  Network: 4096 → 256 → 128 → 10\n";
+  Printf.printf "  Network: 784 → 128 → 64 → 10\n";
   Printf.printf "  Learning rate: %.4f\n" learning_rate;
   Printf.printf "  Iterations: %d\n" num_iterations;
   Printf.printf "  Train/test: 80/20 split\n\n";

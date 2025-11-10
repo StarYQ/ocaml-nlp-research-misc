@@ -1,0 +1,4 @@
+(executable
+ (public_name binary_sentiment_classifier)
+ (name main)
+ (libraries binary_sentiment_classifier))

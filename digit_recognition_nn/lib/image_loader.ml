@@ -103,7 +103,7 @@ let convert_jpeg_to_png_and_load filename =
 (** Load and preprocess a single image:
     1. Load from file
     2. Convert to grayscale
-    3. Resize to 64x64
+    3. Resize to 28x28
     4. Extract pixels as float array normalized to [0.0, 1.0] *)
 let load_and_preprocess_image filename =
   (* Load image (with JPEG conversion workaround) *)
@@ -112,16 +112,16 @@ let load_and_preprocess_image filename =
   (* Convert to grayscale *)
   let gray_img = rgb_to_grayscale img in
 
-  (* Resize to 64x64 *)
-  let resized_img = resize_image gray_img 64 64 in
+  (* Resize to 28x28 *)
+  let resized_img = resize_image gray_img 28 28 in
 
   (* Extract pixels and normalize *)
-  let pixels = Array.make 4096 0.0 in
+  let pixels = Array.make 784 0.0 in
   let max_val = float_of_int resized_img.max_val in
 
-  for y = 0 to 63 do
-    for x = 0 to 63 do
-      let idx = y * 64 + x in
+  for y = 0 to 27 do
+    for x = 0 to 27 do
+      let idx = y * 28 + x in
       Image.read_grey resized_img x y (fun v ->
         (* Normalize to [0.0, 1.0] *)
         pixels.(idx) <- float_of_int v /. max_val
@@ -195,11 +195,11 @@ let train_test_split data train_ratio seed =
   split [] n_train shuffled
 
 (** Convert list of (pixels, label) to matrix format
-    X: (4096, num_samples) matrix of features
+    X: (784, num_samples) matrix of features
     Y: (1, num_samples) matrix of labels *)
 let data_to_matrices data =
   let num_samples = List.length data in
-  let x_matrix = Array.make_matrix 4096 num_samples 0.0 in
+  let x_matrix = Array.make_matrix 784 num_samples 0.0 in
   let y_matrix = Array.make_matrix 1 num_samples 0.0 in
 
   List.iteri (fun i (pixels, label) ->
